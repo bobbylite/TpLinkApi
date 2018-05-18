@@ -38,7 +38,7 @@ You should be able to view it at http://127.0.0.1:3000/tplink/
 
 You will have to modify the following code block in routes/tpLink.js
 
-```
+```javascript
 router.get('/On', (req, res, next) => {
   ClientLoginControlPowerState('192.168.1.197', true); // Enter your Smartbulbs IP Address here.
   ClientLoginControlPowerState('192.168.1.191', true); // Enter your Smartbulbs IP Address here.
