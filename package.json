@@ -13,5 +13,15 @@
     "morgan": "~1.9.0",
     "tplink-cloud-api": "^0.3.1",
     "tplink-smarthome-api": "^0.22.0"
-  }
+  },
+  "description": "REST API for TP Link LB100 series Smartbulbs with UI.",
+   "repository": {
+     "type": "git",
+     "url": "git+https://github.com/bobby3501/TpLinkApi.git"
+   },
+   "author": "Bobby Luisi",
+   "bugs": {
+     "url": "https://github.com/bobby3501/TpLinkApi/issues"
+   },
+   "homepage": "https://idkYet.io/TpLink"
 }
