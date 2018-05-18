@@ -1,6 +1,6 @@
 # TP Link LB130 REST API
 
-RESTful API for TP Link LB100 series smartbulbs. This also includes
+RESTful API for TP Link LB100 series Smartbulbs. This also includes
 a React/Babel config with Express utilizing the react view engine.
 React Views: https://github.com/reactjs/express-react-views
 
@@ -13,7 +13,9 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them
 
 ```
-Give examples
+node@v6.11.4
+npm@3.10.10
+
 ```
 
 ### Installing
@@ -23,20 +25,30 @@ A step by step series of examples that tell you have to get a development env ru
 Say what the step will be
 
 ```
-Give the example
+git clone https://github.com/bobby3501/TpLinkApi.git
+git cd TpLinkApi
+npm install
+npm start
 ```
 
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+You now have TP Link Api up and running.
+You should be able to view it at http://127.0.0.1:3000/tplink/
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+You will have to modify the following code block in routes/tpLink.js
+
+``
+router.get('/On', (req, res, next) => {
+  ClientLoginControlPowerState('192.168.1.197', true); // Enter your Smartbulbs IP Address here.
+  ClientLoginControlPowerState('192.168.1.191', true); // Enter your Smartbulbs IP Address here.
+
+  res.render('index', {
+    Welcome: 'Testing Login',
+    title: 'Login'
+  });
+});
+``
 
 ### Break down into end to end tests
 
