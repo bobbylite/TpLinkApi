@@ -14,24 +14,40 @@ router.get('/test', (req, res, next) => {
   console.log('Hello World');
 });
 
-router.get('/Login', (req, res, next) => {
+router.get('/On', (req, res, next) => {
+  ClientLoginControlPowerState('192.168.1.197', true);
+  ClientLoginControlPowerState('192.168.1.191', true);
 
-  const client = new Client();
-  const plug = client.getDevice({host: '192.168.1.197'}).then((device)=>{
-    device.getSysInfo().then(console.log);
-    device.setPowerState(true);
-  });
-
-  // Look for devices, log to console, and turn them on
-  client.startDiscovery().on('device-new', (device) => {
-    device.getSysInfo().then(console.log);
-    device.setPowerState(true);
-  });
-  
   res.render('index', {
     Welcome: 'Testing Login',
     title: 'Login'
   });
 })
+
+router.get('/Off', (req, res, next) => {
+  DiscoveryControlPowerState(false);
+
+  res.render('index', {
+    Welcome: 'Testing Login',
+    title: 'Login'
+  });
+});
+
+ClientLoginControlPowerState = (ipAddress, status) => {
+  const client = new Client();
+  const plug = client.getDevice({host: ipAddress}).then((device)=>{
+    device.getSysInfo().then(console.log);
+    device.setPowerState(status);
+  });
+};
+
+DiscoveryControlPowerState = (status) => {
+  const client = new Client();
+  // Look for devices, log to console, and turn them on
+  client.startDiscovery().on('device-new', (device) => {
+    device.getSysInfo().then(console.log);
+    device.setPowerState(status);
+  });
+};
 
 module.exports = router;

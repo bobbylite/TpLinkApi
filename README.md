@@ -1,6 +1,8 @@
-# Project Title
+# TP Link LB130 REST API
 
-One Paragraph of project description goes here
+RESTful API for TP Link LB100 series smartbulbs. This also includes
+a React/Babel config with Express utilizing the react view engine.
+React Views: https://github.com/reactjs/express-react-views
 
 ## Getting Started
 
