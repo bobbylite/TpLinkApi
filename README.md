@@ -1,8 +1,6 @@
 # TP Link LB130 REST API
 
-RESTful API for TP Link LB100 series Smartbulbs. This also includes
-a React/Babel config with Express utilizing the react view engine.
-React Views: https://github.com/reactjs/express-react-views
+RESTful API for TP Link LB100 series Smartbulbs.
 
 ## Getting Started
 
@@ -26,8 +24,11 @@ Say what the step will be
 
 ```
 git clone https://github.com/bobby3501/TpLinkApi.git
-git cd TpLinkApi
+
+cd TpLinkApi
+
 npm install
+
 npm start
 ```
 
@@ -36,7 +37,7 @@ You should be able to view it at http://127.0.0.1:3000/tplink/
 
 ## Running the tests
 
-You will have to modify the following code block in routes/tpLink.js
+You will have to modify the following code block in routes/tpLink.js.
 
 ```javascript
 router.get('/On', (req, res, next) => {
@@ -72,23 +73,19 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Express-React-Views](https://github.com/reactjs/express-react-views) - The View Engine Used.
+* [Maven](https://maven.apache.org/) - Lorem Ipsum
+* [ROME](https://rometools.github.io/rome/) - Lorem Ipsum
 
 ## Contributing
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
-
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Bobby Luisi** - *Initial work* - [PurpleBooth](https://github.com/bobby3501)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/bobby3501/tplink/contributors) who participated in this project.
 
 ## License
 
@@ -96,6 +93,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* Express-React-Views - https://github.com/reactjs/express-react-views
+* ExpressJS
