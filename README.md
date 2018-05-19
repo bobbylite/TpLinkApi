@@ -53,18 +53,33 @@ router.get('/On', (req, res, next) => {
 
 ### Break down into end to end tests
 
-Explain what these tests test and why
+Testing the UI requires the following link:
 
 ```
-Give an example
+http://127.0.0.1/tplink/
 ```
 
 ### And coding style tests
 
-Explain what these tests test and why
+Adding your own route to the route file.  This can be done to
+create a custom REST action. 
 
-```
-Give an example
+```javascript
+var express = require('express');
+var router = express.Router();
+const { Client } = require('tplink-smarthome-api');
+
+
+router.get('/', function(req, res, next) {
+  res.render('index', {
+    Welcome: 'Welcome to TP Link API by Bobby Luisi',
+    title: 'TpLink API'
+  });
+});
+
+router.get('/test', (req, res, next) => {
+  console.log('Hello World');
+});
 ```
 
 ## Deployment
@@ -82,7 +97,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Authors
 
-* **Bobby Luisi** - *Initial work* - [PurpleBooth](https://github.com/bobby3501)
+* **Bobby Luisi** - *Initial work* - [bobby3501](https://github.com/bobby3501)
 
 See also the list of [contributors](https://github.com/bobby3501/tplink/contributors) who participated in this project.
 
