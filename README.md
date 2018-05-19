@@ -74,8 +74,7 @@ Add additional notes about how to deploy this on a live system
 ## Built With
 
 * [Express-React-Views](https://github.com/reactjs/express-react-views) - The View Engine Used.
-* [Maven](https://maven.apache.org/) - Lorem Ipsum
-* [ROME](https://rometools.github.io/rome/) - Lorem Ipsum
+* [Express](https://expressjs.com/) - ExpressJS
 
 ## Contributing
 
