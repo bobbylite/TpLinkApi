@@ -9,19 +9,22 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
+    "express-react-views": "^0.10.5",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
     "tplink-cloud-api": "^0.3.1",
     "tplink-smarthome-api": "^0.22.0"
   },
   "description": "REST API for TP Link LB100 series Smartbulbs with UI.",
-   "repository": {
-     "type": "git",
-     "url": "git+https://github.com/bobby3501/TpLinkApi.git"
-   },
-   "author": "Bobby Luisi",
-   "bugs": {
-     "url": "https://github.com/bobby3501/TpLinkApi/issues"
-   },
-   "homepage": "https://idkYet.io/TpLink"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bobby3501/TpLinkApi.git"
+  },
+  "author": "Bobby Luisi",
+  "bugs": {
+    "url": "https://github.com/bobby3501/TpLinkApi/issues"
+  },
+  "homepage": "https://idkYet.io/TpLink"
 }
