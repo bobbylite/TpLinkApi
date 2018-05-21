@@ -12,10 +12,7 @@ router.use((req, res, next) => {
 });
 
 router.get('/', function(req, res, next) {
-  res.render('index', {
-    Welcome: 'Welcome to TP Link API by Bobby Luisi',
-    title: 'TpLink API'
-  });
+ res.redirect('https://github.com/bobby3501/TpLinkApi/blob/master/README.md');
 });
 
 router.get('/On', (req, res, next) => {
