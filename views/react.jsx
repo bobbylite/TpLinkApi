@@ -6,7 +6,7 @@ class HelloMessage extends React.Component {
   render() {
     return (
       <DefaultLayout title={this.props.title}>
-        <div>Dear {this.props.name}</div>
+        <div>Please go to localhost:3001/tplink</div>
       </DefaultLayout>
     );
   }

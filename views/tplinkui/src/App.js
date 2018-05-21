@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Button from 'antd/lib/button';
 import TpLink from './TpLink.js';
 import './App.css';
 
