@@ -59,8 +59,7 @@ http://127.0.0.1:3001/
 
 ### Custom code
 
-Adding RESTful Action
-To add your own custom REST action:
+Adding your own custom REST action:
 
 ```javascript
 var express = require('express');
