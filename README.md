@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+To install the project, you need to have the following versions of node and npm installed:
 
 ```
 node@v6.11.4
@@ -18,9 +18,7 @@ npm@3.10.10
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
+Enter the following commands in order to get the development environment running
 
 ```
 git clone https://github.com/bobby3501/TpLinkApi.git
@@ -32,12 +30,12 @@ npm install
 npm start
 ```
 
-You now have TP Link Api up and running.
-You should be able to view it at http://127.0.0.1:3000/tplink/
+You should now have TP Link REST API up and running,
+and should be able to view it at http://127.0.0.1:3001/tplink/
 
 ## Running the tests
 
-You will have to modify the following code block in routes/tpLink.js.
+Now, modify the following code block in routes/tpLink.js
 
 ```javascript
 router.get('/On', (req, res, next) => {
@@ -56,13 +54,13 @@ router.get('/On', (req, res, next) => {
 Testing the UI requires the following link:
 
 ```
-http://127.0.0.1/tplink/
+http://127.0.0.1:3001/
 ```
 
-### And coding style tests
+### Custom code
 
-Adding your own route to the route file.  This can be done to
-create a custom REST action. 
+Adding RESTful Action
+To add your own custom REST action:
 
 ```javascript
 var express = require('express');
@@ -83,13 +81,15 @@ router.get('/test', (req, res, next) => {
 ```
 
 ## Deployment
-
-Add additional notes about how to deploy this on a live system
+The following command will start the API Sever and the React UI.
+```
+sudo npm start
+```
 
 ## Built With
 
 * [Express-React-Views](https://github.com/reactjs/express-react-views) - The View Engine Used.
-* [Express](https://expressjs.com/) - ExpressJS
+* [Ant.Design](http://ant.design/) - Ant.Design
 
 ## Contributing
 
@@ -107,5 +107,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Express-React-Views - https://github.com/reactjs/express-react-views
-* ExpressJS
+* TPLINK Client API - https://www.npmjs.com/package/tplink-smarthome-api#new_Client_new
