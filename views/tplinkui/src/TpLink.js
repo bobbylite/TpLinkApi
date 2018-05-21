@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { message, Layout, Menu, Breadcrumb, Icon, Button, Switch } from 'antd';
 import './App.css';
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
@@ -8,14 +8,43 @@ class App extends Component {
 
   constructor(){
     super()
-    this.ConfigurationClicked = this.ConfigurationClicked.bind(this)
+    this.InvertFlag = this.InvertFlag.bind(this)
     this.state = {
         flag: false,
-        message: "Default"
+        message: "Off"
     }
   }
 
-  ConfigurationClicked = () => {this.setState({flag: true})}
+  HandlePrimaryClick = () => {
+    console.log("Clicked.");
+  }
+
+  InvertFlag = () => {
+    if (this.state.flag === true){
+      this.setState({message: "Off"})
+    }
+    if (this.state.flag === false){
+      this.setState({message: "On"})
+    }
+    this.setState({
+      flag: !this.state.flag,
+    });
+  }
+
+  ShowMessage = (messageStatus) => {
+    if (messageStatus.status === false) {
+      message.success(messageStatus.message)
+    }
+    if (messageStatus.status === true) {
+      message.success(messageStatus.message)
+    }
+    if (messageStatus.status === 503) {
+      message.warning(messageStatus.message)
+    }
+    if (messageStatus.status === 502) {
+      message.error(messageStatus.message)
+    }
+  }
 
   render() {
     return (
@@ -28,7 +57,7 @@ class App extends Component {
               defaultSelectedKeys={['2']}
               style={{ lineHeight: '64px' }}
             >
-              <Menu.Item onClick={this.ConfigurationClicked} key="1">Configuration</Menu.Item>
+              <Menu.Item onClick={this.InvertFlag} key="1">Configuration</Menu.Item>
               <Menu.Item key="2">Control Center</Menu.Item>
             </Menu>
           </Header>
@@ -67,7 +96,8 @@ class App extends Component {
                 </Menu>
               </Sider>
               <Content style={{ padding: '0 24px', minHeight: 280 }}>
-                Content
+                <Button onClick={this.asyncRequest} type="primary">{this.state.message}</Button>
+                <Switch onChange={this.InvertFlag} />
               </Content>
             </Layout>
           </Content>
@@ -77,6 +107,33 @@ class App extends Component {
         </Layout>
     );
   }
+
+  // Methods
+  asyncRequest = () => {
+    fetch('http://127.0.0.1:3001/TpLInk/api', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        status: this.state.flag, // This is a test to retrieve POST
+        message: this.state.message, // This is a test to retrieve POST
+      })
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        this.ShowMessage(responseJson)
+      })
+      .catch((err) => {
+        var responseJson = {
+          status: 502,
+          err: err
+        }
+        this.ShowMessage(responseJson)
+      })
+  }
+
 }
 
 export default App;
