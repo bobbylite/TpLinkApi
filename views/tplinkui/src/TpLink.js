@@ -42,7 +42,7 @@ class App extends Component {
       message.warning(messageStatus.message)
     }
     if (messageStatus.status === 502) {
-      message.error(messageStatus.message)
+      message.error("Internal Error. See logs.")
     }
   }
 
@@ -110,7 +110,8 @@ class App extends Component {
 
   // Methods
   asyncRequest = () => {
-    fetch('http://127.0.0.1:3001/TpLInk/api', {
+    fetch('http://127.0.0.1:3001/TpLInk/api/power', {
+    //fetch('http://127.0.0.1:3001/TpLInk/api/light', {
       method: 'POST',
       mode: 'cors',
       headers: {

@@ -34,8 +34,8 @@ router.get('/Off', (req, res, next) => {
   });
 });
 
-router.post('/api', (req, res, next) => {
-  handleRequest(req.body).then((status) => {
+router.post('/api/power', (req, res, next) => {
+  handlePowerRequest(req.body).then((status) => {
     if (status === true ) {
       res.json({
             status: true,
@@ -60,7 +60,33 @@ router.post('/api', (req, res, next) => {
   });
 });
 
-handleRequest = (request) => {
+router.post('/api/light', (req, res, next) => {
+  handleLightRequest(req.body).then((status) => {
+    if (status === true ) {
+      res.json({
+            status: true,
+            message: 'Successfully turned on the lights.'
+          });
+    }
+    if (status === false ) {
+      res.json({
+            status: false,
+            message: 'Successfully turned off the lights.'
+          });
+    }
+    else {
+      res.json({
+        status: 503,
+        message: 'BACKEND API - Seems like the status isn\'t true or false'
+      })
+    }
+  })
+  .catch((err) => {
+    status: 502
+  });
+});
+
+handlePowerRequest = (request) => {
   return new Promise(
     (resolve, reject) => {
       const {status, message} = request;
@@ -68,6 +94,19 @@ handleRequest = (request) => {
         resolve(true)
       });
       if (status === false) DiscoveryControlPowerState(status).then(() => {
+        resolve(false)
+      });
+    });
+};
+
+handleLightRequest = (request) => {
+  return new Promise(
+    (resolve, reject) => {
+      const {status, message} = request;
+      if (status === true) DiscoveryControlLightState(status).then(() => {
+        resolve(true)
+      });
+      if (status === false) DiscoveryControlLightState(status).then(() => {
         resolve(false)
       });
     });
@@ -91,6 +130,26 @@ DiscoveryControlPowerState = (status) => {
         device.setPowerState(status).then(resolve);
       });
     });
+};
+
+DiscoveryControlLightState = (options) => {
+  options = {
+    transition_period: 100,
+    on_off: true,
+    hue: 200,
+    saturation: 80,
+    brightness: 30,
+    color_temp: 3000//2500-9000
+  }
+  return new Promise(
+    (resolve, reject) => {
+      const client = new Client();
+      // Look for devices, log to console, and turn them on or off
+      client.startDiscovery().on('device-new', (device) => {
+        device.getSysInfo().then(console.log);
+        device.lighting.setLightState(options, {timeout: 1000, transport: "tcp"}).then(resolve);
+    });
+  });
 };
 
 module.exports = router;
