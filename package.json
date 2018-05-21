@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "BobFob": "cd tplinkui && yarn start"
+    "start": "node ./bin/www & cd views/tplinkui/ && yarn start"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
