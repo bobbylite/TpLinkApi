@@ -57,15 +57,15 @@ router.post('/api/light', (req, res, next) => {
     }
     else {
       res.json({
-        status: 503,
+        status: 520,
         message: 'BACKEND API - Seems like the status isn\'t true or false'
       });
     };
   })
   .catch((err) => {
     res.json({
-      status: 502,
-      message: 'BACKEND API - Seems like the status isn\'t true or false'
+      status: 500,
+      message: 'Server Error.'
     });
   });
 });

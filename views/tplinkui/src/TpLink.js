@@ -38,11 +38,11 @@ class App extends Component {
     if (messageStatus.status === true) {
       message.success(messageStatus.message)
     }
-    if (messageStatus.status === 503) {
+    if (messageStatus.status === 520) {
       message.warning(messageStatus.message)
     }
-    if (messageStatus.status === 502) {
-      message.error("Internal Error. See logs.")
+    if (messageStatus.status === 500) {
+      message.warning(messageStatus.message)
     }
   }
 
