@@ -4,25 +4,15 @@ var http = require('http');
 var cors = require('cors');
 
 module.exports = {
-  handlePowerRequest: (request) => {
-    return new Promise(
-      (resolve, reject) => {
-        const {status, message} = request;
-        if (status === true) DiscoveryControlPowerState(status)
-        .then(() => {
-          resolve(true)
-        })
-        .catch((err) => {
-          reject(err)
-        })
-        if (status === false) DiscoveryControlPowerState(status)
-        .then(() => {
-          resolve(false)
-        })
-        .catch ((err) => {
-          reject(err)
-        })
-      })
+  responseCreator: (status) => {
+    switch(status){
+      case true:
+        return 'Successfully turned on the lights.'
+      case false:
+        return 'Successfully turned off the lights.'
+      default:
+        return 'Server Response: Status is not true. Status is not false.'
+    }
   },
   handleLightRequest: (request) => {
     return new Promise(
@@ -43,15 +33,20 @@ module.exports = {
           reject(err);
         })
       });
+  },
+  handlePowerRequest: (request) => {
+    return new Promise(
+      (resolve, reject) => {
+        const {status, message} = request;
+        DiscoveryControlPowerState(status && true)
+        .then((bool, error) => {
+          resolve(status)
+        })
+        .catch((err) => {
+          reject(err)
+        })
+      })
   }
-};
-
-ClientLoginControlPowerState = (ipAddress, status) => {
-  const client = new Client();
-  const plug = client.getDevice({host: ipAddress}).then((device)=>{
-    device.getSysInfo().then(console.log);
-    device.setPowerState(status);
-  });
 };
 
 DiscoveryControlPowerState = (status) => {
@@ -59,15 +54,19 @@ DiscoveryControlPowerState = (status) => {
     (resolve, reject) => {
       const client = new Client();
       // Look for devices, log to console, and turn them on or off
-      client.startDiscovery().on('device-new', (device) => {
-        device.getSysInfo().then(console.log);
-        device.setPowerState(status)
+      client.startDiscovery()
+      .on('device-new', (device) => {
+        device.getSysInfo()
+        .then(console.log)
+        .catch((err) => reject)
+        device.setPowerState(status && true)
         .then(resolve)
-        .catch((err) => {
-          reject(err);
-        });
-      });
-    });
+        .catch(reject)
+      })
+      .on('error', (err) => {
+        reject(err)
+      })
+    })
 };
 
 DiscoveryControlLightState = (options) => {
@@ -87,5 +86,13 @@ DiscoveryControlLightState = (options) => {
         device.getSysInfo().then(console.log);
         device.lighting.setLightState(options, {timeout: 1000, transport: "tcp"}).then(resolve);
     });
+  });
+};
+
+ClientLoginControlPowerState = (ipAddress, status) => {
+  const client = new Client();
+  const plug = client.getDevice({host: ipAddress}).then((device)=>{
+    device.getSysInfo().then(console.log);
+    device.setPowerState(status);
   });
 };

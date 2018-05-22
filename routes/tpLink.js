@@ -16,33 +16,24 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/api/power', (req, res, next) => {
-  tplinkHandler.handlePowerRequest(req.body).then((status) => {
-    if (status === true ) {
-      res.json({
-            status: true,
-            message: 'Successfully turned on the lights.'
-          });
-    }
-    if (status === false ) {
-      res.json({
-            status: false,
-            message: 'Successfully turned off the lights.'
-          });
-    }
-    else {
-      res.json({
-        status: 503,
-        message: 'BACKEND API - Seems like the status isn\'t true or false'
-      })
-    }
+  tplinkHandler.handlePowerRequest(req.body)
+  .then((status) => {
+    res.json({
+      status: status && true,
+      message: tplinkHandler.responseCreator(status && true)
+    })
   })
   .catch((err) => {
-    status: 502
+    res.json({
+      status: 500,
+      message: err.message
+    });
   });
 });
 
 router.post('/api/light', (req, res, next) => {
-  tplinkHandler.handleLightRequest(req.body).then((status) => {
+  tplinkHandler.handleLightRequest(req.body)
+  .then((status) => {
     if (status === true ) {
       res.json({
             status: true,
