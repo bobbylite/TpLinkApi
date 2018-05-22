@@ -8,24 +8,40 @@ module.exports = {
     return new Promise(
       (resolve, reject) => {
         const {status, message} = request;
-        if (status === true) DiscoveryControlPowerState(status).then(() => {
+        if (status === true) DiscoveryControlPowerState(status)
+        .then(() => {
           resolve(true)
-        });
-        if (status === false) DiscoveryControlPowerState(status).then(() => {
+        })
+        .catch((err) => {
+          reject(err)
+        })
+        if (status === false) DiscoveryControlPowerState(status)
+        .then(() => {
           resolve(false)
-        });
-      });
+        })
+        .catch ((err) => {
+          reject(err)
+        })
+      })
   },
   handleLightRequest: (request) => {
     return new Promise(
       (resolve, reject) => {
         const {status, message} = request;
-        if (status === true) DiscoveryControlLightState(status).then(() => {
+        if (status === true) DiscoveryControlLightState(status)
+        .then(() => {
           resolve(true)
-        });
-        if (status === false) DiscoveryControlLightState(status).then(() => {
+        })
+        .catch((err) => {
+          reject(err)
+        })
+        if (status === false) DiscoveryControlLightState(status)
+        .then(() => {
           resolve(false)
-        });
+        })
+        .catch((err) => {
+          reject(err);
+        })
       });
   }
 };
@@ -45,7 +61,11 @@ DiscoveryControlPowerState = (status) => {
       // Look for devices, log to console, and turn them on or off
       client.startDiscovery().on('device-new', (device) => {
         device.getSysInfo().then(console.log);
-        device.setPowerState(status).then(resolve);
+        device.setPowerState(status)
+        .then(resolve)
+        .catch((err) => {
+          reject(err);
+        });
       });
     });
 };
