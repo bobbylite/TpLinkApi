@@ -63,13 +63,13 @@ DiscoveryControlPowerState = (status) => {
 
 DiscoveryControlLightState = (options) => {
   options = {
-    transition_period: 100,
-    on_off: true,
-    hue: 200,
-    saturation: 80,
-    brightness: 30,
-    color_temp: 3000//2500-9000
-  };
+    "transition_period": 100,
+    "on_off": true,
+    "hue": 200,
+    "saturation": 80,
+    "brightness": 30,
+    "color_temp": 3000//2500-9000
+  }; // Try using .getLightState([sendOptions]) to see example object.
   return new Promise(
     (resolve, reject) => {
       const client = new Client();
