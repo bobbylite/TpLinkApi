@@ -42,7 +42,7 @@ class App extends Component {
       message.warning(messageStatus.message)
     }
     if (messageStatus.status === 500) {
-      message.error(messageStatus.message)
+      message.error("Server Error. See logs for details")
     }
   }
 

@@ -4,16 +4,6 @@ var http = require('http');
 var cors = require('cors');
 
 module.exports = {
-  responseCreator: (status) => {
-    switch(status){
-      case true:
-        return 'Successfully turned on the lights.'
-      case false:
-        return 'Successfully turned off the lights.'
-      default:
-        return 'Server Response: Status is not true. Status is not false.'
-    }
-  },
   handleLightRequest: (request) => {
     return new Promise(
       (resolve, reject) => {
@@ -39,6 +29,16 @@ module.exports = {
           reject(err)
         })
       })
+  },
+  responseCreator: (status) => {
+    switch(status){
+      case true:
+        return 'Successfully turned on the lights.'
+      case false:
+        return 'Successfully turned off the lights.'
+      default:
+        return 'Server Response: Status is not true. Status is not false.'
+    }
   }
 };
 
