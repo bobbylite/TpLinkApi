@@ -19,8 +19,8 @@ router.post('/api/power', (req, res, next) => {
   tplinkHandler.handlePowerRequest(req.body)
   .then((status) => {
     res.json({
-      status: status && true,
-      message: tplinkHandler.responseCreator(status && true)
+      status: status === true,
+      message: tplinkHandler.responseCreator(status === true)
     })
   })
   .catch((err) => {
@@ -35,8 +35,8 @@ router.post('/api/light', (req, res, next) => {
   tplinkHandler.handleLightRequest(req.body)
   .then((status) => {
     res.json({
-      status: status && true,
-      message: tplinkHandler.responseCreator(status && true)
+      status: status === true,
+      message: tplinkHandler.responseCreator(status === true)
     })
   })
   .catch((err) => {

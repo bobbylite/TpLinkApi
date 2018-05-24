@@ -8,7 +8,7 @@ module.exports = {
     return new Promise(
       (resolve, reject) => {
         const {status, message} = request;
-        DiscoveryControlLightState(status && true)
+        DiscoveryControlLightState(status === true)
         .then(() => {
           resolve(status)
         })
@@ -21,7 +21,7 @@ module.exports = {
     return new Promise(
       (resolve, reject) => {
         const {status, message} = request;
-        DiscoveryControlPowerState(status && true)
+        DiscoveryControlPowerState(status === true)
         .then(() => {
           resolve(status)
         })
@@ -51,7 +51,7 @@ DiscoveryControlPowerState = (status) => {
         device.getSysInfo()
         .then(console.log)
         .catch((err) => reject)
-        device.setPowerState(status && true)
+        device.setPowerState(status === true)
         .then(resolve)
         .catch(reject)
       })
