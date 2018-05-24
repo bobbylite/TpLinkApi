@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
  res.redirect('https://github.com/bobby3501/TpLinkApi/blob/master/README.md');
 });
 
-router.post('/api/power', (req, res, next) => {
+router.post('/api/power', (req, res, next) => { // Error handlig for light OFF.
   tplinkHandler.handlePowerRequest(req.body)
   .then((status) => {
     res.json({
